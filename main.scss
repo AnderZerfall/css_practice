@@ -1,1 +1,114 @@
+@import 'variables';
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.people {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: auto;
+    gap: $gap;
+    font-family: 'Arial', sans-serif;
+    width: fit-content;
+    margin-top: $gap;
+
+    @media (max-width: 750px) {
+        grid-template-columns: repeat(2, auto);
+    }
+}
+
+.person {
+    position: relative;
+
+    &__container {
+        width: $card-width;
+        padding: $padding;
+        border-radius: $padding;
+        transition: transform 1000ms ease;
+        z-index: 2;
+    }
+
+    &:hover &__container {
+        position: absolute;
+        transform: scale(1.1);
+        z-index: 99;
+    }
+
+    &:hover img{
+        border-radius: 60px;
+        transition: border-radius 1000ms ease;
+    }
+
+    &:hover .extra {
+        display: block;
+
+        &::after {
+            content: '';
+            display: block;
+            background-color: #EEEEEE;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            border-radius: $padding;
+        }
+    }
+}
+
+.photo {
+    position: relative;
+
+    & img {
+        max-width: 100%;
+        border-radius: 100%;
+    }
+}
+
+.rank {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: $gap-small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $accent-color;
+    font-size: $text-size;
+    font-weight: 700;
+
+    &::after {
+        position: absolute;
+        content: '';
+        background-color: white;
+        width: $number-size;
+        height: $number-size;
+        border-radius: 100%;
+        z-index: -1;
+    }
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.name {
+    font-size: $headline-size;
+    font-weight: 700;
+    color: $secondary-color;
+}
+
+.extra {
+    display: none;
+    font-size: $subtitle-size;
+    font-weight: 500;
+    margin-top: $margin-small;
+}
 
